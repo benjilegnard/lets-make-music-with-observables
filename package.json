@@ -1,0 +1,30 @@
+{
+  "name": "@benjilegnard/lets-make-music-with-observables",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@catppuccin/highlightjs": "^1.0.0",
+    "@catppuccin/palette": "^1.7.1",
+    "@preact/preset-vite": "^2.10.0",
+    "@types/reveal.js": "^5.0.5",
+    "prettier": "^3.4.2",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.11"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.0.1",
+    "preact": "^10.25.4",
+    "reveal.js": "^5.1.0",
+    "rxjs": "^7.8.2"
+  }
+}
