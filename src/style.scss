@@ -70,3 +70,20 @@ $heading4Size: 0.8em;
 @import "reveal.js/css/theme/template/theme";
 
 // ---------------------------------------------
+
+
+// last slide
+.qr-codes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.qr-codes>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.qr-codes>div>* {
+  display: block;
+}
