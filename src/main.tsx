@@ -28,6 +28,7 @@ deck
         pause: false,
         transition: "none",
         backgroundTransition: "none",
+        // disableLayout: true,
         history: true,
         pdfSeparateFragments: false,
         keyboard: { b: null } as unknown as boolean,

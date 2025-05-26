@@ -1,3 +1,4 @@
+<!-- LTeX: language=fr-FR -->
 # Faisons de la musique avec ~~RxJS~~ des observables
 
 
@@ -5,12 +6,60 @@
 ## Introduction
 
 
+### La musique ? kézako ?
+
+- la musique c'est quoi
+- le son pour un ordinateur, c'est quoi?
+
+
+### Le son.
+
+
+### Citations
+
+- nietche, mozart
+
+
+### En quoi ça nous intéresse
+
+WebAudio => disponible dans le navigateur
+
+
 
 ## Développement
 
 
 
+## Observable ???
+
+ReactiveX
+
+https://reactivex.io/
+
+
+### Oui, mais
+
+TC39 proposal
+
+
+### 
+
+
+
+## On va tenter une symphonie bizarre. 
+
+Faire les apprentis-sorciers.
+// TODO illustration mickey l'apprenti sorcier
+
+
+
 ## Conclusion
+
+
+### Ce qu'on a vu des Observables natifs
+
+
+### Des librairies
 
 
 ### Merci

@@ -1,8 +1,15 @@
+<!-- LTeX: language=fr-FR -->
 # Faisons de la musique avec RxJS et l'api WebAudio
 
 Une courte conférence pour présenter une idée un peu bizarre. Et parler des Observables natifs. 
 
 - Les slides déployés sont  [ici](https://benjilegnard.github.io/lets-make-music-with-observables/)
+- Les différents examples (fonctionnels dans chrome uniquement sont):
+  - là
+  - ici
+  - là
+  - ou encore là
+
 ## Abstract
 
 ```markdown
@@ -18,19 +25,29 @@ Dans le navigateur web, avec l'api WebAudio et une librairie de théorie musical
 ## Plan
 
 - Intro
-  - C'est quoi la musique ?
   - C'est quoi un Observable ?
-  - Pourquoi ce talk ? + présentation
+    - pattern Observer / gang of for
+    - schéma UML
+  - Rx et RxJS 
+  - J'ai menti, monte en voiture loser, on va apprendre les Observables natifs.
+  - C'est quoi la musique ? ( des maths)
+  - Pour un ordinateur.
 - Métronome
+  - Commencons par le commencement.
   - BPM
-  - interval()
+  - setInterval()
+  - créer un Observable, constructor
+  - subscribe() + new Sound
+  - WebAudio API
 - Rythme / Batterie
   - switchMap() / filter()
+  - filter() / modulos
   - webAudio : source / destination
 - Basse
   - oscillator
   - sine wave
   - notes change
+  - apparté, Tonal.js
 - Synthétiseur
   - nappes
   - accords 
@@ -40,6 +57,7 @@ Dans le navigateur web, avec l'api WebAudio et une librairie de théorie musical
 - Grand final / Conclusion
   - Deux minutes max de démo
   - Allez plus loin...
+  - RxJS vs Observable natifs.
   - Merci
 
 
@@ -70,4 +88,12 @@ Et en creusant, je me suis rendu compte que ça avait déjà été abordé de ma
 - [Ian Hansen - RxJS for Metrics and Music](https://www.youtube.com/watch?v=2btEt0W7UxU)
 - [Tero Parviainen "Reactive Music Apps in Angular and RxJS"](https://www.youtube.com/watch?v=EB-CreYq1WY)
 
+## TODOLIST
+
+- [ ] finir Plan
+- [ ] fix composant marble-diagram
+- [ ] slides
+- [ ] intégration highlight
+- [ ] structure en deux colonnes
+- [ ] composant code mirror
 
