@@ -1,0 +1,54 @@
+@use "@catppuccin/palette/scss/mocha";
+
+.counter-container {
+  background: mocha.$surface0;
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+
+  h1 {
+    color: var(--text-color);
+  }
+}
+
+.counter-display {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: mocha.$text;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.increment {
+  background-color: mocha.$green;
+  color: mocha.$base;
+}
+
+.increment:hover {
+  background-color: mocha.$teal;
+}
+
+.decrement {
+  background-color: mocha.$red;
+  color: mocha.$base;
+}
+
+.decrement:hover {
+  background-color: mocha.$maroon;
+}

@@ -18,6 +18,7 @@ const getFilesInput = () => {
     // initial value of accumulator
     {
       main: resolve(__dirname, "index.html"),
+      examples: resolve(__dirname, "examples/index.html"),
     },
   );
 };
