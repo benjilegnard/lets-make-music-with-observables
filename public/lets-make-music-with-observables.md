@@ -6,6 +6,13 @@
 ## 🔊 Introduction
 
 
+### Historique de ce talk
+
+Notes:
+- Quand j'ai commencé à travailler sur ce talk, c'était pour enseigner RxJS de manière un peu ludique à mes collègues.
+- Sauf que 
+
+
 ### 🤔 C'est quoi un Observable ?
 
 
@@ -180,14 +187,33 @@
 ## Conclusion
 
 
-### Allez plus loin...
-- environnements pour faire du live coding audio
+### Ce qu'on a vu des Observables natifs
+- utilisable sur les objets du DOM natifs
+- juste les briques de base pour l'instant
+- API Builder-oriented
+- ⚠️ API asynchrone : les promesses.
+
+
+### Y U NO pipe() ?
+
+- // TODO ceci n'est pas une pipe.
+
+
+### Des librairies
 
 
 ### RxJS vs Observable natifs.
 - à retenir : la base est là, pas l'api rxjs
 - compatibilité observable natifs / itérateurs asynchrone
 - rxjs 8
+
+
+
+### Support
+
+- Chrome-only
+- Tests : https://wpt.fyi/results/dom/observable?label=experimental&label=master&aligned 
+
 
 
 ### Merci
