@@ -1,0 +1,36 @@
+@use "@catppuccin/palette/scss/mocha";
+
+:root {
+  --background-color: #{mocha.$base};
+  --text-color: #{mocha.$text};
+  --surface-color: #{mocha.$surface0};
+  --primary-color: #{mocha.$blue};
+  --secondary-color: #{mocha.$green};
+  --accent-color: #{mocha.$red};
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: 18px;
+}
+
+a {
+  color: mocha.$blue;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: mocha.$mauve;
+  }
+}

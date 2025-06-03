@@ -104,6 +104,7 @@ Dans le navigateur web, avec l'api WebAudio et une librairie de théorie musical
 
 ### Observables natifs
 - [La proposal au TC-39](https://github.com/tc39/proposal-observable?tab=readme-ov-file#ecmascript-observable)
+- [La spec W3C](https://wicg.github.io/observable/)
 - [Observable Native Demo from JeanMeche](https://stackblitz.com/edit/native-observables)
 - [Native & RxJS Observables](https://www.youtube.com/watch?v=WLHyzCY_1Tc)
 
