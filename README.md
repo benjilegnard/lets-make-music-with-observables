@@ -124,9 +124,12 @@ Et en creusant, je me suis rendu compte que ça avait déjà été abordé de ma
 
 ## TODOLIST
 
-- [ ] finir Plan
+- [x] finir Plan
+- [ ] Slide intro / sound test
 - [ ] fix composant marble-diagram
+- [ ] refaire diagramme UML avec les termes 
 - [ ] slides
+  - [ ] 
 - [ ] intégration highlight
 - [ ] structure en deux colonnes
 - [ ] composant code mirror
