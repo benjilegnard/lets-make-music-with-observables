@@ -29,7 +29,7 @@ deck
         transition: "none",
         backgroundTransition: "none",
         // disableLayout: true,
-        history: true,
+        history: false,
         pdfSeparateFragments: false,
         keyboard: { b: null } as unknown as boolean,
     })
