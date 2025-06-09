@@ -49,11 +49,12 @@ $mainFontSize: 32px;
 $mainFont: "'Source Sans Pro', Arial, sans-serif";
 $headingFont: "'Poppins', Helvetica, sans-serif";
 $codeFont: Hack, monospace;
+$codeFontSize: 32px;
 $headingTextShadow: none;
 $headingMargin: 0 0 10px 0;
 $headingLetterSpacing: normal;
 $headingTextTransform: normal;
-$headingFontWeight: 600;
+$headingFontWeight: 400;
 $linkColor: $mauve;
 $linkColorHover: color.adjust($linkColor, $lightness: 15%);
 $selectionBackgroundColor: $surface2;
@@ -69,8 +70,26 @@ $heading4Size: 0.8em;
 // Theme template ------------------------------
 @import "reveal.js/css/theme/template/theme";
 
-// ---------------------------------------------
+// Code 
 
+pre,
+code,
+code.hljs {
+  background-color: $crust;
+}
+
+.reveal pre {
+  font-size: $codeFontSize;
+}
+
+// Slides content styles ---------------------------------------------
+
+//
+.portrait {
+  float: right;
+  border-radius: 50%;
+  width: 200px;
+}
 
 // last slide
 .qr-codes {
