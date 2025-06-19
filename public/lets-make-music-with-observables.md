@@ -204,7 +204,7 @@ Notes:
 
 ### démo métronome
 
-<div id="metronome-demo"></div>
+<div id="metronome"></div>
 
 Notes:
 Ici j'ai juste à chaque "tick" une incrémentation du nombre de beat/ou on en est
