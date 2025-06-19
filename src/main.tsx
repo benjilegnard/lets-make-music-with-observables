@@ -9,6 +9,7 @@ import Notes from "reveal.js/plugin/notes/notes";
 import Highlight from "reveal.js/plugin/highlight/highlight";
 import RevealMath from "reveal.js/plugin/math/math";
 import { ExampleRxJS1 } from "./slides/example-rxjs-1";
+import { SoundTest } from "./components/sound-test";
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight, RevealMath.KaTeX],
@@ -16,6 +17,7 @@ let deck = new Reveal({
 
 
 const components: Record<string, ComponentChild> = {
+    "sound-test": <SoundTest />,
     "example-rxjs-1": <ExampleRxJS1 />,
 };
 
