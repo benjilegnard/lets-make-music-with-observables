@@ -2,15 +2,19 @@ import { FunctionComponent } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { signal, computed } from '@preact/signals';
 import { Observable, Subscription } from 'rxjs';
+import { flavors } from '@catppuccin/palette';
 
-// SVG styling constants
-const MARBLE_STROKE = '#333';
+// Get the mocha palette
+const mocha = flavors.mocha.colors;
+
+// SVG styling constants using Catppuccin colors
+const MARBLE_STROKE = mocha.surface2.hex;
 const MARBLE_STROKE_WIDTH = '2';
-const LINE_STROKE = '#666';
+const LINE_STROKE = mocha.overlay0.hex;
 const LINE_STROKE_WIDTH = '2';
-const TEXT_FILL = '#333';
+const TEXT_FILL = mocha.text.hex;
 const TEXT_FONT_SIZE = '12';
-const MARBLE_TEXT_FILL = '#fff';
+const MARBLE_TEXT_FILL = mocha.crust.hex;
 const MARBLE_TEXT_FONT_SIZE = '10';
 
 // Layout constants
@@ -37,11 +41,11 @@ interface MarbleDiagramProps {
     observables: ObservableInput[];
 }
 
-// Predefined marble colors
+// Predefined marble colors using Catppuccin palette
 const MARBLE_COLORS = [
-    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
-    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
-    '#F8C471', '#82E0AA', '#F1948A', '#85C1E9', '#D7BDE2'
+    mocha.red.hex, mocha.green.hex, mocha.blue.hex, mocha.yellow.hex, mocha.peach.hex,
+    mocha.pink.hex, mocha.teal.hex, mocha.lavender.hex, mocha.mauve.hex, mocha.sky.hex,
+    mocha.sapphire.hex, mocha.maroon.hex, mocha.rosewater.hex, mocha.flamingo.hex
 ];
 
 // Global signals
@@ -269,10 +273,10 @@ export const MarbleDiagram: FunctionComponent<MarbleDiagramProps> = ({ observabl
             style={{
                 width: '100%',
                 height: `${height.value}px`,
-                border: '1px solid #ccc',
+                border: `1px solid ${mocha.surface1.hex}`,
                 borderRadius: '8px',
                 overflow: 'hidden',
-                backgroundColor: '#f9f9f9',
+                backgroundColor: mocha.mantle.hex,
                 position: 'relative'
             }}
         >
@@ -292,7 +296,7 @@ export const MarbleDiagram: FunctionComponent<MarbleDiagramProps> = ({ observabl
                 bottom: '10px',
                 right: '10px',
                 fontSize: '12px',
-                color: '#666',
+                color: mocha.subtext0.hex,
                 fontFamily: 'sans-serif'
             }}>
                 Time → (Tick: {currentTick})
