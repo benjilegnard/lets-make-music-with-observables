@@ -4,7 +4,7 @@
 
 
 ## 🔊 Introduction
-<img src="/images/benjamin-legrand.png" class="portrait" />
+<img src="images/benjamin-legrand.png" class="portrait" />
 
 - Benjamin Legrand<!-- .element class="fragment"-->
 - 🧑‍💻Tech lead @ onepoint<!-- .element class="fragment"-->
@@ -19,7 +19,7 @@ Notes:
 
 
 ### 📅 Historique de ce talk
-<img src="/images/making-techno-reactive-with-rxjs-max-bendick-ng-conf-2021.png" />
+<img src="images/making-techno-reactive-with-rxjs-max-bendick-ng-conf-2021.png" />
 
 [Making Techno Reactive with RxJS | Max Bendick | ng-conf 2021](https://www.youtube.com/watch?v=gXXW1rqubk0)
 
@@ -42,7 +42,7 @@ Notes:
 
 
 ### Pattern Observer
-<img src="/images/gang-of-four-design-patterns.jpg" alt="Couverture du livre 'Gang of Four: Design Patterns'" style="max-height: 60vh"/>
+<img src="images/gang-of-four-design-patterns.jpg" alt="Couverture du livre 'Gang of Four: Design Patterns'" style="max-height: 60vh"/>
 
 Notes:
 - Fait partie des 23 designs patterns du gang of four.
@@ -51,7 +51,7 @@ Notes:
 
 
 ### Un petit schéma UML
-<img src="/images/observer-uml-diagram.png" alt="Diagramme UML, représentation Objet du pattern" style="" />
+<img src="images/observer-uml-diagram.png" alt="Diagramme UML, représentation Objet du pattern" style="" />
 
 Notes:
 - ça c'était la version Java/Objet
@@ -60,7 +60,7 @@ Notes:
 
 
 ### ReactiveX et RxJS 
-<img src="/images/rx-logo.png" alt="" style="max-height: 10vh" />
+<img src="images/rx-logo.png" alt="" style="max-height: 10vh" />
 
 [https://rxjs.dev/](https://rxjs.dev/)
 - Observer<!-- .element class="fragment"-->
@@ -100,6 +100,7 @@ interface Observable<T> {
         onComplete?: () => void
     }): Subscription
 
+    // ...
 }
 ```
 
@@ -129,7 +130,7 @@ Notes:
 
 ### Et là, c'est le drame :
 <img 
-    src="/images/ben-lesh-twitter-observables.png"
+    src="images/ben-lesh-twitter-observables.png"
     alt="Ben Lesh, on twitter/x, the 14 avr Ben Lesh: Y’all there are observables in your browser right now. if you are in a chromium based browser, that is up-to-date, open your console and type the word  “Observable”"
     lang="en"
 />
@@ -140,9 +141,16 @@ Notes:
 - Observable natif disponibles dans la console.
 - avant ça ils étaient derrière un flag expérimental à activer
 
+### Et effectivement:
+
+<img src=""/>
+
+Notes:
+- donc je teste, j'ouvre ma console, et oui, dans les globals, Observable est présent, avec pleint de méthodes.
+
 
 ### J'ai menti, monte en voiture loser, on va apprendre les Observables natifs.
-<img src="/images/get-in-loser-observables.jpg"/>
+<img src="images/get-in-loser-observables.jpg"/>
 Notes:
 - du coup je vais pas trop vous parler d'RxJS.
 - mais plutôt des Observables natifs
@@ -235,6 +243,7 @@ getElementById("bpm-plus")
 interface EventTarget {
   when(eventName: string): Observable<Event>;
 }
+```
 
 
 ### subscribe() + new Sound
@@ -263,9 +272,9 @@ interface EventTarget {
 
 ### TR-808
 
-<img src="images/tr-808.jpg" />
+<img src="images/tr-808.png" />
 
-(source: [wikipedia](https://en.wikipedia.org/wiki/Roland_TR-808) )
+(source: [wikipedia](https://en.wikipedia.org/wiki/Roland_TR-808)
 
 Notes:
 - super machine célèbre des années 80.
@@ -296,7 +305,6 @@ Notes:
 
 
 ### oscillator
-- 
 
 
 ### sine wave
@@ -315,6 +323,7 @@ Notes:
 
 
 ### theremin
+
 <div id="theremin"></div>
 
 
@@ -349,6 +358,7 @@ Notes:
 
 
 ### théorie musicale
+
 https://www.npmjs.com/package/Tonal
 
 
@@ -388,7 +398,7 @@ Contretemps
 
 
 ### Y U NO pipe() ?
-<img src="/images/magritte-pipe.jpg" />
+<img src="images/magritte-pipe.jpg" />
 
 Notes:
 - pas une API fonctionnelle, plus orienté objet.
