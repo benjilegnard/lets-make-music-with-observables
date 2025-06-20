@@ -4,11 +4,7 @@
 Une courte conférence pour présenter une idée un peu bizarre. Et parler des Observables natifs. 
 
 - Les slides déployés sont  [ici](https://benjilegnard.github.io/lets-make-music-with-observables/)
-- Les différents examples (fonctionnels dans chrome uniquement sont):
-  - là
-  - ici
-  - là
-  - ou encore là
+- Les différents examples (fonctionnels dans chrome uniquement) sont également consultables [ici](https://benjilegnard.github.io/lets-make-music-with-observables/examples/)
 
 ## Abstract
 

@@ -9,18 +9,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 /** returns an object with all entry points ( main index.html and examples folder) */
 const getFilesInput = () => {
   const results = readdirSync(join(__dirname, "examples"));
-  return results.reduce(
-    (acc, val) => {
-      acc[val] = resolve(__dirname, `examples/${val}/index.html`);
-      console.log("val", val);
-      return acc;
-    },
-    // initial value of accumulator
-    {
-      main: resolve(__dirname, "index.html"),
-      examples: resolve(__dirname, "examples/index.html"),
-    },
-  );
+  return results
+    .filter((name) => name !== "common")
+    .filter((name) => name !== "index.html")
+    .filter((name) => name !== "_template")
+    .reduce(
+      (acc, val) => {
+        acc[val] = resolve(__dirname, `examples/${val}/index.html`);
+        console.log("val", val);
+        return acc;
+      },
+      // initial value of accumulator
+      {
+        main: resolve(__dirname, "index.html"),
+        examples: resolve(__dirname, "examples/index.html"),
+      },
+    );
 };
 
 /** reload markdown file on changes */
