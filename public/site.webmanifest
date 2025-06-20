@@ -1,6 +1,6 @@
 {
   "name": "Faisons de la musique avec des Observables",
-  "short_name": "MS-20",
+  "short_name": "Musique + Observables = ❤",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -17,3 +17,4 @@
   "background_color": "#1e1e2e",
   "display": "standalone"
 }
+
