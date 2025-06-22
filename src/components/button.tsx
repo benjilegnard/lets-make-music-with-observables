@@ -50,42 +50,46 @@ export const Button: FunctionComponent<ButtonProps> = ({
 
     const catppuccinColors = {
         primary: {
-            color: mocha.blue.hex
+            color: mocha.blue.hex,
         },
         secondary: {
-            color: mocha.overlay2.hex
+            color: mocha.overlay2.hex,
         },
         success: {
-            color: mocha.green.hex
+            color: mocha.green.hex,
         },
         danger: {
-            color: mocha.red.hex
-        }
+            color: mocha.red.hex,
+        },
     };
 
     const sizeStyles = {
         small: {
             padding: '6px 12px',
             fontSize: '14px',
-            borderRadius: '26px'
+            borderRadius: '26px',
         },
         medium: {
             padding: '10px 20px',
             fontSize: '16px',
-            borderRadius: '36px'
+            borderRadius: '36px',
         },
         large: {
             padding: '14px 28px',
             fontSize: '18px',
-            borderRadius: '46px'
-        }
+            borderRadius: '46px',
+        },
     };
 
     const variantColor = catppuccinColors[variant].color;
     const sizes = sizeStyles[size];
 
     const buttonStyle: JSX.CSSProperties = {
-        backgroundColor: isPressed ? variantColor : (isActive ? mocha.base.hex : mocha.crust.hex),
+        backgroundColor: isPressed
+            ? variantColor
+            : isActive
+              ? mocha.base.hex
+              : mocha.crust.hex,
         color: isPressed ? mocha.crust.hex : variantColor,
         border: `2px solid ${variantColor}`,
         padding: sizes.padding,
@@ -100,7 +104,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
             : `0 6px 16px ${variantColor}33`,
         outline: 'none',
         fontFamily: 'inherit',
-        ...style
+        ...style,
     };
 
     return (

@@ -4,7 +4,8 @@ import { Button } from './button';
 export const SoundTest: FunctionComponent = () => {
     const playSound = () => {
         // Create an audio context
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const audioContext = new (window.AudioContext ||
+            (window as any).webkitAudioContext)();
 
         // Create an oscillator for a simple beep sound
         const oscillator = audioContext.createOscillator();
@@ -20,8 +21,14 @@ export const SoundTest: FunctionComponent = () => {
 
         // Configure volume envelope
         gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.6, audioContext.currentTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+        gainNode.gain.linearRampToValueAtTime(
+            0.6,
+            audioContext.currentTime + 0.01,
+        );
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioContext.currentTime + 0.5,
+        );
 
         // Play the sound
         oscillator.start(audioContext.currentTime);
