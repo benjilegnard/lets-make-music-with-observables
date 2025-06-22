@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'preact';
+import { Button } from './button';
 
 export const SoundTest: FunctionComponent = () => {
     const playSound = () => {
@@ -28,8 +29,8 @@ export const SoundTest: FunctionComponent = () => {
     };
 
     return (
-        <button onClick={playSound}>
+        <Button onClick={playSound} variant="primary">
             Play Sound
-        </button>
+        </Button>
     );
 };
