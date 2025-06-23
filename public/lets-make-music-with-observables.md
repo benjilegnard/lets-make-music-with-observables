@@ -43,7 +43,7 @@ Notes:
 ### 🤔 C'est quoi un Observable ?
 - Pattern de gestion réactive d'un changement de valeur<!-- .element class="fragment"-->
 - "Push", 📢 Producteur -> 👂Consommateur<!-- .element class="fragment"-->
-- "Value change as Events" / temps réèl<!-- .element class="fragment"-->
+- "Value change as Events"<!-- .element class="fragment"-->
 
 Notes:
 - Ce n'est pas nouveau,
@@ -72,9 +72,10 @@ Notes:
 <img src="images/rx-logo.png" alt="" style="max-height: 10vh" />
 
 [https://rxjs.dev/](https://rxjs.dev/)
-- Observer<!-- .element class="fragment"-->
-- Iterator<!-- .element class="fragment"-->
-- Functional Programming<!-- .element class="fragment"-->
+
+<span class="fragment">Observer</span>
+<span class="fragment">+ Iterator</span>
+<span class="fragment">+ Functional Programming</span>
 
 Notes:
 - basé sur un deuxième pattern du gang of four, l'Itérateur
@@ -85,7 +86,7 @@ Notes:
 ### En JavaScript/TypeScript
 | Observer | Observable | Subscription |
 |-|-|-|
-| next() | constructor()<!-- .element class="fragment"--> | unsubscribe() |
+| next() | constructor() | unsubscribe() |
 | error() | of() | closed |
 | complete() | from() | |
 
@@ -100,7 +101,7 @@ Notes:
 
 ```typescript
 interface Observable<T> {
-    
+
     subscribe(onNext: (t: T) => void, onError?: () => void, onComplete: () => void): Subscription;
 
     subscribe({
@@ -116,7 +117,7 @@ interface Observable<T> {
 ### Usage
 
 ```typescript
-const obs$ = new Observable();
+const obs$ = new Observable(()=>{/** */});
 
 const sub = obs$.subscribe((value) => {
   console.log(value);
@@ -199,7 +200,8 @@ function metronome(interval: number) {
 
 Notes:
 - Vous pouvez construire vos propres observables, en passant une méthode au constructeur.
-- Ici je mets en place une factory function qui va prendre une durée
+- Ici je mets en place une factory function qui va prendre une durée / intervalle en param.
+- en retour du constructeur, on passe une fonction de "nettoyage" appelée lors du complete
 
 
 ### démo métronome
@@ -207,12 +209,12 @@ Notes:
 <div id="metronome"></div>
 
 Notes:
-Ici j'ai juste à chaque "tick" une incrémentation du nombre de beat/ou on en est
+- Ici j'ai juste à chaque "tick" une incrémentation du nombre de beat/ou on en est
 
 
 ### BPM: battements par minutes
 - Pas suffisant (on ne parle pas en secondes en musique)
-- + Signature temporelle
+- Signature temporelle
 
 ```typescript
 function bpmToInterval(bpm: number) {
@@ -221,16 +223,18 @@ function bpmToInterval(bpm: number) {
 ```
 
 
-### BPM Counter
+### BPM Slider
 
+<div id="bpm-to-interval"></div>
 
 Notes:
 - désolé, c'est l'example basique de la réactivité :)
 
 
-### écouter un évenement sur un bouton
+### écouter un évenement sur un input
+
 ```typescript
-getElementById("bpm-plus")
+getElementById("bpm-slider")
     .when("click")
     .subscribe(() => {
         bpm++;
@@ -244,10 +248,22 @@ getElementById("bpm-plus")
 interface EventTarget {
   when(eventName: string): Observable<Event>;
 }
+```
+
+
+<div id="bpm-to-interval-with-tick"></div>
+
+
+### switchMap()
 
 
 ### subscribe() + new Sound
-// TODO
+
+```TypeScript
+metronome$.subscribe(() => {
+
+})
+```
 
 
 ### WebAudio API
@@ -260,11 +276,13 @@ interface EventTarget {
 
 
 ### ok j'ai un Métronome
+
 - temps / 4/8, ternaire, 5/7
 - boite à rythme
 
 
 ### Signature temporelle
+
 - 2/4
 - 3/4
 - 5/4
@@ -395,6 +413,8 @@ Contretemps
 - API Builder-oriented : 
 - ⚠️ API asynchrone : certains opérateurs retournent des promesses.
 
+Notes:
+- pas de behaviorSubject, ReplaySubject, etc...
 
 ### Y U NO pipe() ?
 <img src="images/magritte-pipe.jpg" />

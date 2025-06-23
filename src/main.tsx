@@ -12,6 +12,7 @@ import { SoundTest } from './components/sound-test';
 import { Storybook } from './components/storybook';
 import { Metronome } from './slides/metronome';
 import { MarbleDemo } from './slides/marble-demo';
+import { BpmToInterval, BpmToIntervalWithTick } from './slides/bpm-to-interval';
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight, RevealMath.KaTeX],
@@ -22,6 +23,8 @@ const components: Record<string, ComponentChild> = {
     storybook: <Storybook />,
     metronome: <Metronome />,
     'marble-demo': <MarbleDemo />,
+    'bpm-to-interval': <BpmToInterval />,
+    'bpm-to-interval-with-tick': <BpmToIntervalWithTick />,
 };
 
 deck.initialize({
