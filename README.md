@@ -103,6 +103,8 @@ Dans le navigateur web, avec l'api WebAudio et une librairie de théorie musical
 - [La spec W3C](https://wicg.github.io/observable/)
 - [Observable Native Demo from JeanMeche](https://stackblitz.com/edit/native-observables)
 - [Native & RxJS Observables](https://www.youtube.com/watch?v=WLHyzCY_1Tc)
+- [Article from codewithomkar](https://www.codewithomkar.com/native-observables-in-javascript/)
+- [Tests](https://wpt.fyi/results/dom/observable?label=experimental&label=master&aligned)
 
 ### Aller plus loin, avec des languages de programmation faits pour faire de la musique :
 - [Live Coding with algorithmic patterns](https://tidalcycles.org/)
