@@ -13,6 +13,7 @@ import { Storybook } from './components/storybook';
 import { Metronome } from './slides/metronome';
 import { MarbleDemo } from './slides/marble-demo';
 import { BpmToInterval, BpmToIntervalWithTick } from './slides/bpm-to-interval';
+import { BpmToTimeSignature } from './slides/bpm-to-time-signature';
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight, RevealMath.KaTeX],
@@ -25,6 +26,7 @@ const components: Record<string, ComponentChild> = {
     'marble-demo': <MarbleDemo />,
     'bpm-to-interval': <BpmToInterval />,
     'bpm-to-interval-with-tick': <BpmToIntervalWithTick />,
+    'bpm-to-time-signature': <BpmToTimeSignature />
 };
 
 deck.initialize({
