@@ -110,6 +110,11 @@ Dans le navigateur web, avec l'api WebAudio et une librairie de théorie musical
 - [Live Coding with algorithmic patterns](https://tidalcycles.org/)
 - [Strudel](https://strudel.cc/)
 
+### Samples
+- [metronome sample from](https://pixabay.com/sound-effects/search/metronome/)
+- [TR-808 samples from](https://www.drumkito.com/sample-packs/roland-tr-808-sample-pack/)
+
+
 ## Inspiration
 
 Je n'ai aucun mérite, j'ai eu l'idée de faire "ma version" de ce talk après avoir vu ce quickie :
@@ -124,12 +129,19 @@ Et en creusant, je me suis rendu compte que ça avait déjà été abordé de ma
 ## TODOLIST
 
 - [x] finir Plan
-- [ ] Slide intro / sound test
-- [ ] fix composant marble-diagram
+- [x] Slide intro / sound test
+- [x] fix composant marble-diagram
 - [ ] refaire diagramme UML avec les termes 
 - [ ] slides
-  - [ ] 
+  - [ ] bpm to time-signature
+  - [ ] drums-beat
+  - [ ] theremin
+  - [ ] beat to bass
+  - [ ] music theory
+  - [ ] Tonal.js
+  - [ ] random notes
+  - [ ] skank
 - [ ] intégration highlight
 - [ ] structure en deux colonnes
-- [ ] composant code mirror
+- [ ] ~~composant code mirror~~
 

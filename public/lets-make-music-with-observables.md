@@ -71,7 +71,7 @@ Notes:
 ### ReactiveX et RxJS 
 <img src="images/rx-logo.png" alt="" style="max-height: 10vh" />
 
-[https://rxjs.dev/](https://rxjs.dev/)
+[https://reactivex.io/](https://reactivex.io/) & [https://rxjs.dev/](https://rxjs.dev/)
 
 <span class="fragment">Observer</span>
 <span class="fragment">+ Iterator</span>
@@ -110,6 +110,7 @@ interface Observable<T> {
         onComplete?: () => void
     }): Subscription
 
+    // ...
 }
 ```
 
@@ -117,7 +118,7 @@ interface Observable<T> {
 ### Usage
 
 ```typescript
-const obs$ = new Observable(()=>{/** */});
+const obs$ = new Observable((obs)=>{obs.next(42);});
 
 const sub = obs$.subscribe((value) => {
   console.log(value);
@@ -134,7 +135,43 @@ sub.unsubscribe();
 - paresseux: pas d'éxécution tant que pas d'abonnement
 Notes:
 - ça reste banger pour manipuler des fonctions au fil du temps
+
+
+### méthodes statiques
+
+```TypeScript
+const abs$ = Observable.of(["a", "b", "c", "d");
+abc$.subscribe(console.log);
+// "a", "b", "c", "d"
+const obs1 = Observable.from(new Observable((obs)=>{obs.next(42)}));
+obs2.subscribe(consolelog);
+// 42
+const obs3$ = Observable.from(Promise.resolve(42));
+obs3.subscribe(console.log);
+// 42
+```
+Notes:
+- vous avez des méthodes statiques pour créer un observable
+- soit depuis un tableau, soit depuis un autre observable
+
+
+### from(iter: Iterable)
+```TypeScript
+const asyncIterator = (async function* () {
+  yield 1;
+  yield 2;
+  yield 3;
+})();
+Observable.from(asyncIterator).subscribe(console.log);
+// 1
+// 2
+// 3
+```
+
+Notes:
 - là si vous avez fait un peu attention et que vous connaissez RxJS vous devez vous être dit : mais c'est pas ça l'API.
+- Tu racontes n'importe quoi Benji
+
 
 
 ### Et là, c'est le drame :
@@ -151,7 +188,7 @@ Notes:
 - avant ça ils étaient derrière un flag expérimental à activer
 
 
-### J'ai menti, monte en voiture loser, on va apprendre les Observables natifs.
+### J'ai menti 🤥
 <img src="images/get-in-loser-observables.jpg"/>
 Notes:
 - du coup je vais pas trop vous parler d'RxJS.
@@ -233,11 +270,15 @@ Notes:
 
 ### écouter un évenement sur un input
 
+```html
+<input id="bpm-slider type="range" min="0" max="200" value="140" />
+```
+
 ```typescript
 getElementById("bpm-slider")
-    .when("click")
-    .subscribe(() => {
-        bpm++;
+    .when("change")
+    .subscribe((bpm) => {
+        console.log(bpm);
 });
 ```
 
@@ -255,6 +296,18 @@ interface EventTarget {
 
 
 ### switchMap()
+
+```TypeScript
+bpmSlider.when("change")
+  .map(bpm => bpmToInterval(bpm))
+  .switchMap((interval) => metronome(interval))
+  .subscribe(() => {
+    // ...
+  });
+```
+Notes:
+- avec switchMap, on peut passer d'un observable à un autre.
+- ici je recréé un métronome chaque fois que la valeur en bpm change.
 
 
 ### subscribe() + new Sound
@@ -275,8 +328,9 @@ metronome$.subscribe(() => {
 ## 🥁 Rythme / Batterie
 
 
-### ok j'ai un Métronome
-
+### ok j'ai un Métronome, en BPM
+- pas suffisant encore
+- besoin d'une signature temporelle pour boucler
 - temps / 4/8, ternaire, 5/7
 - boite à rythme
 
@@ -286,6 +340,8 @@ metronome$.subscribe(() => {
 - 2/4
 - 3/4
 - 5/4
+Notes:
+- 
 
 
 ### TR-808
@@ -298,6 +354,11 @@ Notes:
 - super machine célèbre des années 80.
 - constatez au milieu vous avez l'échelle
 - si on essaie de refaire ça...
+
+
+### conversion time-signature
+
+<div id="bpm-to-time-signature"></div>
 
 
 ### switchMap() / filter()
@@ -314,6 +375,8 @@ Notes:
 
 ### lire un son
 
+### J'aurais pu:
+- utiliser first()
 
 ### différences d'api
 
@@ -322,7 +385,8 @@ Notes:
 ## 🎸 Basse
 
 
-### oscillator
+### OscillatorNode
+
 - 
 
 
@@ -410,17 +474,19 @@ Contretemps
 ### Ce qu'on a vu des Observables natifs
 - utilisable sur les objets du DOM natifs (EventTarget)
 - juste les briques de base pour l'instant
-- API Builder-oriented : 
+- multicast par défaut, (rxjs unicast)
 - ⚠️ API asynchrone : certains opérateurs retournent des promesses.
 
 Notes:
 - pas de behaviorSubject, ReplaySubject, etc...
+
 
 ### Y U NO pipe() ?
 <img src="images/magritte-pipe.jpg" />
 
 Notes:
 - pas une API fonctionnelle, plus orienté objet.
+- pattern builder
 
 
 ### RxJS vs Observable natifs.
@@ -428,12 +494,18 @@ Notes:
 - compatibilité avec les itérateurs asynchrone
 - rxjs à terme deviendrait une lib utilitaire
 
+Notes:
+- rxjs 8 adoptera peut-être l'API.
+
 
 ### Mauvaise nouvelle.
 - C'est toujours en stage 1. <https://www.proposals.es/stages/stage1>
-- Chrome uniquement
+- Chrome uniquement 😠
 
-- Tests : https://wpt.fyi/results/dom/observable?label=experimental&label=master&aligned 
+Notes:
+- maintenant soyons sérieux, la musique c'était pour l'example
+- si faire de la musique avec du code vous intéresse,
+
 
 
 ### Si vous voulez faire de la musique avec du code.
