@@ -17,7 +17,8 @@ export const Metronome: FunctionComponent = () => {
                 audioContextRef.current = new AudioContext();
                 const response = await fetch('sounds/metronome.mp3');
                 const arrayBuffer = await response.arrayBuffer();
-                audioBufferRef.current = await audioContextRef.current.decodeAudioData(arrayBuffer);
+                audioBufferRef.current =
+                    await audioContextRef.current.decodeAudioData(arrayBuffer);
             } catch (error) {
                 console.error('Failed to load metronome sound:', error);
             }
@@ -43,9 +44,9 @@ export const Metronome: FunctionComponent = () => {
 
     // Create interval observable that depends on isPlaying
     const metronome$ = isPlaying.value.pipe(
-        switchMap(playing =>
-            playing ? interval(500) : EMPTY // 120 BPM (500ms intervals)
-        )
+        switchMap(
+            (playing) => (playing ? interval(500) : EMPTY), // 120 BPM (500ms intervals)
+        ),
     );
 
     const handleStart = () => {
@@ -67,26 +68,30 @@ export const Metronome: FunctionComponent = () => {
                 playSound();
             },
             error: (err) => console.error('Metronome error:', err),
-            complete: () => console.log('Metronome completed')
+            complete: () => console.log('Metronome completed'),
         });
 
         return () => subscription.unsubscribe();
     }, []);
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '20px',
-            padding: '20px',
-            width: '100%'
-        }}>
-            <div style={{
+        <div
+            style={{
                 display: 'flex',
-                gap: '12px',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
+                flexDirection: 'column',
+                gap: '20px',
+                padding: '20px',
+                width: '100%',
+            }}
+        >
+            <div
+                style={{
+                    display: 'flex',
+                    gap: '12px',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
                 <Button variant="success" onClick={handleStart}>
                     Start
                 </Button>
@@ -96,10 +101,7 @@ export const Metronome: FunctionComponent = () => {
             </div>
 
             <MarbleDiagram>
-                <DiagramLine
-                    label="metronome$"
-                    observable={metronome$}
-                />
+                <DiagramLine label="metronome$" observable={metronome$} />
             </MarbleDiagram>
         </div>
     );
