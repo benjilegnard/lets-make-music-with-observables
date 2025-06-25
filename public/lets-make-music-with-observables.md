@@ -90,11 +90,11 @@ Notes:
 | error() | of() | closed |
 | complete() | from() | |
 
-
 Notes:
 - de l'api de base, vous avez trois objets principaux à connaître
+- le principal est au milieu
 - Observable, qui encapsule une donnée au fil du temps
-- Subscriber: va avoir lalogique de : qu'est ce que je fais quand une donnée
+- Subscriber: va avoir la logique de : qu'est ce que je fais quand une donnée
 
 
 ### Une fonction vs un callback simple.
@@ -102,12 +102,15 @@ Notes:
 ```typescript
 interface Observable<T> {
 
-    subscribe(onNext: (t: T) => void, onError?: () => void, onComplete: () => void): Subscription;
+    subscribe(
+        next: (t: T) => void,
+        error?: () => void,
+        complete: () => void): Subscription;
 
     subscribe({
-        onNext: (t: T) => void,
-        onError?: () => void,
-        onComplete?: () => void
+        next: (t: T) => void,
+        error?: () => void,
+        complete?: () => void
     }): Subscription
 
     // ...
@@ -118,7 +121,9 @@ interface Observable<T> {
 ### Usage
 
 ```typescript
-const obs$ = new Observable((obs)=>{obs.next(42);});
+const obs$ = new Observable((obs)=>{
+    obs.next(42);
+});
 
 const sub = obs$.subscribe((value) => {
   console.log(value);
@@ -126,20 +131,19 @@ const sub = obs$.subscribe((value) => {
 
 sub.unsubscribe();
 ```
-
-
-### Avantages
+Notes:
+- penser à unsubscribe(), sinon fuite mémoires.
+- __Avantages__
 - pas d'impératif
 - on s'abonne à des données
 - on peut "composer" / fusionner des observables
 - paresseux: pas d'éxécution tant que pas d'abonnement
-Notes:
 - ça reste banger pour manipuler des fonctions au fil du temps
 
 
-### méthodes statiques
+### Méthodes statiques
 
-```TypeScript
+```TypeScript[|1-3|4-6|7-9]
 const abs$ = Observable.of(["a", "b", "c", "d");
 abc$.subscribe(console.log);
 // "a", "b", "c", "d"
@@ -155,23 +159,24 @@ Notes:
 - soit depuis un tableau, soit depuis un autre observable
 
 
-### from(iter: Iterable)
+### AsyncIterator
 ```TypeScript
 const asyncIterator = (async function* () {
   yield 1;
   yield 2;
   yield 3;
 })();
-Observable.from(asyncIterator).subscribe(console.log);
+Observable.from(asyncIterator)
+    .subscribe((value)=> {console.log(value);});
 // 1
 // 2
 // 3
 ```
 
 Notes:
+- ce qui est bien c'est que c'est aussi compatible avec les générateurs...
 - là si vous avez fait un peu attention et que vous connaissez RxJS vous devez vous être dit : mais c'est pas ça l'API.
-- Tu racontes n'importe quoi Benji
-
+- Tu racontes n'importe quoi Benji, oui j'ai menti.
 
 
 ### Et là, c'est le drame :
@@ -187,24 +192,31 @@ Notes:
 - Observable natif disponibles dans la console.
 - avant ça ils étaient derrière un flag expérimental à activer
 
+### Effectivement...
+<img src="images/chrome-console.png" />
+
 
 ### J'ai menti 🤥
 <img src="images/get-in-loser-observables.jpg"/>
 Notes:
 - du coup je vais pas trop vous parler d'RxJS.
 - mais plutôt des Observables natifs
+- chrome ils se sont basé sur une proposal...
 
 
 ### TC39 proposal
+<img src="images/TC39.png" style="max-height: 20vh"/>
 
 <https://github.com/tc39/proposal-observable>
 
 Notes:
+- comité qui valide les évolutions du language.
 - Stage 1 encore
 - Stages à expliquer si on à le temps
 
 
-### Différences principales
+### Observable natifs
+
 Notes:
 - le concept de base est le même
 - maintenant qu'on a vu ce qu'était un Observable.
@@ -220,7 +232,7 @@ Notes:
 
 ### setInterval
 
-```typescript
+```typescript[|1|2|3-11|6|8-10]
 function metronome(interval: number) {
   let counter = 0;
   return new Observable((observer) => {
@@ -265,16 +277,27 @@ function bpmToInterval(bpm: number) {
 <div id="bpm-to-interval"></div>
 
 Notes:
-- désolé, c'est l'example basique de la réactivité :)
+- donc la je .map() une valeur vers une autre
+- chaque fois que mon Observable en BPM émets
+- on le convertit en millisecondes
 
 
 ### écouter un évenement sur un input
 
 ```html
-<input id="bpm-slider type="range" min="0" max="200" value="140" />
+<input
+    id="bpm-slider"
+    type="range"
+    min="0"
+    max="200"
+    value="140"
+/>
 ```
 
-```typescript
+
+### .when()
+
+```typescript [|2]
 getElementById("bpm-slider")
     .when("change")
     .subscribe((bpm) => {
@@ -288,6 +311,7 @@ getElementById("bpm-slider")
 ```typescript
 interface EventTarget {
   when(eventName: string): Observable<Event>;
+  addEventListener
 }
 ```
 
@@ -320,8 +344,10 @@ metronome$.subscribe(() => {
 
 
 ### WebAudio API
-- apparté, la musique pour un ordinateur
-- webAudio : source / destination
+- WebAudio : source / destination
+Notes:
+- j'aurais un talk tout entier pour en parler de cette API
+- 
 
 
 
@@ -361,24 +387,37 @@ Notes:
 <div id="bpm-to-time-signature"></div>
 
 
-### switchMap() / filter()
+### Boite à rythme
+
+<div id="drum-beat"></div>
 
 
-### grosse caisse sur le premier temps
+### operateurs
+- `first()`
+- `last()`
 
+Notes:
+- pourquoi filter ?
+- nécéssite que l'observable se complète/termine d'émettre
+- et surtout : ça renvoie des promesses.
 
-### filter() / modulos
-
-
-### snare sur le 2e temps
-
-
-### lire un son
-
-### J'aurais pu:
-- utiliser first()
 
 ### différences d'api
+- Certaines méthodes renvoient des promesses
+| return Observable | returns Promise |
+| - | - |
+| map  | |
+| filter  | |
+| switchMap | 
+
+
+### Pourquoi ?
+<img src="images/but-why.gif" />
+
+
+### TC 39
+<img src="images/TC-39.png" />
+<https://github.com/tc39/proposal-async-iterator-helpers>
 
 
 
@@ -386,27 +425,26 @@ Notes:
 
 
 ### OscillatorNode
+```TypeScript
 
-- 
+```
 
 
 ### sine wave
-
-
-### la musique, pour un ordinateur
-
-
-### des MATHS
-
-
-### le piano
-
-
-### notes change
+// TODO image vaques
 
 
 ### theremin
+
 <div id="theremin"></div>
+
+
+### le piano
+Notes:
+- dans notre culture euro-centrée.
+
+
+### notes change
 
 
 ### apparté, Tonal.js: abstraction
@@ -485,16 +523,16 @@ Notes:
 <img src="images/magritte-pipe.jpg" />
 
 Notes:
-- pas une API fonctionnelle, plus orienté objet.
-- pattern builder
+- pas une API fonctionnelle, plus orienté objet, comme beaucoup d'api du DOM.
+- pattern builder, chaînage plutôt que pipe()
 
 
-### RxJS vs Observable natifs.
-- à retenir : la base est là, pas l'api rxjs complète
-- compatibilité avec les itérateurs asynchrone
-- rxjs à terme deviendrait une lib utilitaire
+### RxJS ?
+
+<img src="images/rx-logo.png" />
 
 Notes:
+- toujours pertinent, 
 - rxjs 8 adoptera peut-être l'API.
 
 
@@ -507,10 +545,9 @@ Notes:
 - si faire de la musique avec du code vous intéresse,
 
 
-
 ### Si vous voulez faire de la musique avec du code.
-- [Tidal Cycles](https://tidalcycles.org/) (Haskell, 2006, le GOAT)
-- [Strudel](https://strudel.cc/) (REPL + version web)
+- [Tidal Cycles](https://tidalcycles.org/) (Haskell, 2006)
+- [Strudel](https://strudel.cc/) (web)
 
 Notes:
 - ce que j'ai commencé à développer autour de ça, ça ressemble énormément à un DSL, un domain-specific-language pour faire de la musique.

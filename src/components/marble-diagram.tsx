@@ -284,10 +284,9 @@ export const DiagramOperator: FunctionComponent<DiagramOperatorProps> = ({
         <div
             style={{
                 width: '100%',
-                height: '60px',
+                height: '50px',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
                 backgroundColor: mocha.surface0.hex,
                 border: `1px solid ${mocha.surface1.hex}`,
                 borderRadius: '8px',
@@ -295,9 +294,41 @@ export const DiagramOperator: FunctionComponent<DiagramOperatorProps> = ({
                 fontWeight: 'bold',
                 color: mocha.text.hex,
                 fontFamily: 'sans-serif',
+                position: 'relative',
             }}
         >
-            {children}
+            <svg
+                width="24"
+                height="50"
+                style={{
+                    position: 'absolute',
+                    left: '12px',
+                    transform: 'rotate(180deg)',
+                }}
+            >
+                <polygon
+                    points="12,15 8,20 16,20"
+                    fill={mocha.text.hex}
+                />
+                <line
+                    x1="12"
+                    y1="20"
+                    x2="12"
+                    y2="35"
+                    stroke={mocha.text.hex}
+                    strokeWidth="2"
+                />
+            </svg>
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
+                {children}
+            </div>
         </div>
     );
 };
