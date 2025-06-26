@@ -311,9 +311,11 @@ getElementById("bpm-slider")
 ```typescript
 interface EventTarget {
   when(eventName: string): Observable<Event>;
-  addEventListener
 }
 ```
+Notes:
+- EventTarget c'est le type qui déclare addEventListener / removeEventListener
+- donc dans l'API du DOM, vous allez pouvoir utiliser cette méthode when pour chaque événement.
 
 
 <div id="bpm-to-interval-with-tick"></div>
@@ -334,20 +336,47 @@ Notes:
 - ici je recréé un métronome chaque fois que la valeur en bpm change.
 
 
-### subscribe() + new Sound
+### WebAudio: charger un son.
+```TypeScript
+const audioContext = new AudioContext();
+const response = await fetch('sounds/metronome.mp3');
+const arrayBuffer = await response.arrayBuffer();
+const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+```
 
+Notes:
+- à noter qu'avec l'API webaudio vous devez récupérer un contexte.
+- ce contexte doit être créé suite à une action utilisateur (la plupart des browers interdisent l'autoplay
+- quelque part lors de l'initialisation de mon écran.
+
+
+### WebAudio: jouer le son
 ```TypeScript
 metronome$.subscribe(() => {
-
+    const source = audioContext.createBufferSource();
+    source.buffer = audioBuffer;
+    source.connect(audioContext.destination);
+    source.start();
 })
 ```
 
 
 ### WebAudio API
 - WebAudio : source / destination
+- Connect / Disconnect
+
 Notes:
 - j'aurais un talk tout entier pour en parler de cette API
 - 
+
+
+### Feels like this:
+
+<img src="images/modular-synth.png" />
+
+Notes:
+- l'api est puissante et tout c'est cool, mais c'est un peu comme utiliser un synthétiseur modulaire, on passe son temps à connecter des noeuds.
+- bref bon, j'ai un métronome, mais le tic/tac là ça va pas être suffisant.
 
 
 
@@ -392,9 +421,11 @@ Notes:
 <div id="drum-beat"></div>
 
 
-### operateurs
+### Autre Opérateurs 
 - `first()`
 - `last()`
+- `drop()`
+- etc...
 
 Notes:
 - pourquoi filter ?
@@ -403,21 +434,43 @@ Notes:
 
 
 ### différences d'api
-- Certaines méthodes renvoient des promesses
-| return Observable | returns Promise |
-| - | - |
-| map  | |
-| filter  | |
-| switchMap | 
+- ⚠️ Certaines méthodes renvoient des promesses 🚨
+
+
+### renvoient un Observable
+  - `from()`
+  - `to()`
+  - `map()`
+  - `filter()`
+  - `switchMap()`
+  - `inspect()`
+
+
+### renvoient une Promesse
+
+- `first()`
+- `last()`
+- `every()`
+- `toArray()`
+- `drop()`
+- `flatMap()`
+- `reduce()`
 
 
 ### Pourquoi ?
 <img src="images/but-why.gif" />
+Notes:
+- conception par comité.
+- Observable de base : pas toutes ces méthodes.
 
 
 ### TC 39
 <img src="images/TC-39.png" />
+
 <https://github.com/tc39/proposal-async-iterator-helpers>
+Notes:
+- les méthodes sur un Observable natif viennent en fait d'une autre proposal au tc-39,
+- les utilitaires d'itérateurs asynchrone.
 
 
 
@@ -426,32 +479,77 @@ Notes:
 
 ### OscillatorNode
 ```TypeScript
-
+const oscillator =  new OscillatorNode();
+oscillator.frequency = 440;
+oscillator.type = "sine";
+oscillator.connect(audioContext.destination);
+oscillator.start();
 ```
 
 
 ### sine wave
-// TODO image vaques
+
+<img src="images/oscilloscope.png"/>
+
+Notes:
+- son, onde, maths everything is a function
 
 
-### theremin
+
+### Theremin
 
 <div id="theremin"></div>
 
+Notes:
+- démo
+- voyez bien que ca sonne pas super
+- ce qu'on pourrait faire...
 
-### le piano
+
+### Fréquence / Maths
+
+<img src="piano-keys-octave-division.svg"/>
+
+
+### Fréquence / Maths
+
+<img src="piano-keys-octave.svg"/>
+
+
+### Fréquence / Maths
+
+<img src="piano-keys-octave.svg"/>
+
+
+### wikipedia ?
+
+<img src="images/wikipedia-piano-key-frequencies.png"/>
+
 Notes:
 - dans notre culture euro-centrée.
+- J'aurais pu mettre en place une map
+- mais en fait y'a mieux...
 
 
-### notes change
+### tonal
+```bash
+npm install tonal
+```
+
+<https://github.com/tonaljs/tonal>
+
+Notes:
+- on ne va pas réinventer la roue.
+- tonal c'est quoi comme librairie ?
 
 
-### apparté, Tonal.js: abstraction
+### Théorie musicale:
 
 
-### apparté Tone.js: au delà de l'api webaudio
+### Examples
+```TypeScript
 
+```
 
 ### Démo
 

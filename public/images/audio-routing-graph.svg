@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1280"
+   height="720"
+   viewBox="0 0 1280 720"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="audio-routing-graph.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="0.78127806"
+     inkscape:cx="604.77828"
+     inkscape:cy="411.50522"
+     inkscape:window-width="1900"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg5">
+    <inkscape:grid
+       type="xygrid"
+       id="grid238" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="Arrow3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow3"
+       markerWidth="4.2071066"
+       markerHeight="7"
+       viewBox="0 0 4.2071068 7"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:round"
+         d="M 3,-3 0,0 3,3"
+         id="arrow3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc" />
+    </marker>
+  </defs>
+  <rect
+     style="fill:#11111b;stroke-width:7.55906;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10"
+     id="background"
+     width="1280"
+     height="720"
+     x="0"
+     y="0"
+     sodipodi:insensitive="true" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <rect
+     style="fill:#11111b;stroke:#fab387;stroke-width:2.92309;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none"
+     id="rect455"
+     width="282.7561"
+     height="87.297379"
+     x="45.077099"
+     y="155.33028" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="88.521721"
+     y="209.00565"
+     id="text10457"><tspan
+       sodipodi:role="line"
+       id="tspan10455"
+       x="88.521721"
+       y="209.00565"
+       style="fill:#fab387">OscillatorNode</tspan></text>
+  <rect
+     style="fill:#11111b;stroke:#89dceb;stroke-width:2.92309;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none"
+     id="rect455-2"
+     width="282.7561"
+     height="87.297379"
+     x="40.885399"
+     y="481.68747" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins;fill:#89dceb"
+     x="87.116592"
+     y="518.69611"
+     id="text10457-7"><tspan
+       sodipodi:role="line"
+       id="tspan10455-0"
+       x="87.116592"
+       y="518.69611"
+       style="fill:#89dceb">MediaElement</tspan><tspan
+       sodipodi:role="line"
+       x="87.116592"
+       y="552.02948"
+       style="fill:#89dceb"
+       id="tspan10660">SourceNode</tspan></text>
+  <rect
+     style="fill:#11111b;stroke:#a6e3a1;stroke-width:2.61822"
+     id="rect10550"
+     width="207.39932"
+     height="78.113983"
+     x="684.69446"
+     y="263.75464" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="722.00739"
+     y="312.83832"
+     id="text10658"><tspan
+       sodipodi:role="line"
+       id="tspan10656"
+       x="722.00739"
+       y="312.83832"
+       style="fill:#a6e3a1">GainNode</tspan></text>
+  <rect
+     style="fill:#11111b;stroke:#89b4fa;stroke-width:3.39441"
+     id="rect10550-9"
+     width="236.43207"
+     height="115.17144"
+     x="670.1781"
+     y="31.3486" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="707.11401"
+     y="82.33432"
+     id="text10658-3"><tspan
+       sodipodi:role="line"
+       id="tspan10656-6"
+       x="707.11401"
+       y="82.33432"
+       style="fill:#74c7ec">AudioBuffer</tspan><tspan
+       sodipodi:role="line"
+       x="707.11401"
+       y="115.66769"
+       style="fill:#74c7ec"
+       id="tspan10701">SourceNode</tspan></text>
+  <rect
+     style="fill:#11111b;stroke:#f38ba8;stroke-width:2.85262"
+     id="rect10755"
+     width="256.55316"
+     height="70.424858"
+     x="976.55627"
+     y="522.04761" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="1015.5261"
+     y="567.28674"
+     id="text10863"><tspan
+       sodipodi:role="line"
+       id="tspan10861"
+       x="1015.5261"
+       y="567.28674"
+       style="fill:#eba0ac">AudioListener</tspan></text>
+  <rect
+     style="fill:#11111b;stroke:#f9e2af;stroke-width:2.10196"
+     id="rect10917"
+     width="208.0706"
+     height="69.505577"
+     x="458.26453"
+     y="422.67578" />
+  <text
+     xml:space="preserve"
+     style="font-size:26.6667px;line-height:1.25;font-family:Poppins;-inkscape-font-specification:Poppins"
+     x="479.61975"
+     y="467.17523"
+     id="text11025"><tspan
+       sodipodi:role="line"
+       id="tspan11023"
+       x="479.61975"
+       y="467.17523"
+       style="fill:#f9e2af">PannerNode</tspan></text>
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow3)"
+     d="m 329.19818,197.45291 c 152.57079,2.83609 193.11957,103.84221 225.1969,222.01202"
+     id="path11027"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow3)"
+     d="m 326.88826,531.7859 c 85.64584,-6.05015 54.59293,-65.15395 127.32043,-64.61268"
+     id="path11029"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow3)"
+     d="m 785.82678,147.84469 3.68986,112.78595"
+     id="path11031"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow3)"
+     d="m 666.20607,462.52339 c 142.95173,1.32549 123.71203,97.55792 306.79898,100.44639"
+     id="path11033"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+  <path
+     style="fill:none;fill-rule:evenodd;stroke:#cdd6f4;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow3)"
+     d="m 785.29179,342.3577 c 4.72512,121.61888 92.6597,188.89859 186.88329,199.17285"
+     id="path11035"
+     inkscape:connector-type="polyline"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cc" />
+</svg>
