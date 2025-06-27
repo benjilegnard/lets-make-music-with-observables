@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'preact';
-import { useState, useEffect, useRef } from 'preact/hooks';
+import { useState, useEffect, } from 'preact/hooks';
 import { MarbleDiagram, DiagramLine, DiagramOperator } from '../components/marble-diagram';
 import { Button } from '../components/button';
-import { BehaviorSubject, interval, filter, tap, EMPTY, switchMap, map } from 'rxjs';
+import { BehaviorSubject, interval, tap, EMPTY, switchMap, map } from 'rxjs';
 import { Note } from 'tonal';
 
 let audioContext: AudioContext | null = null;

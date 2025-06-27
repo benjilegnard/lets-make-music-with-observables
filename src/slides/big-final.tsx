@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'preact';
 import { useState } from 'preact/hooks';
-import { MarbleDiagram, DiagramLine, DiagramOperator } from '../components/marble-diagram';
+import { MarbleDiagram, DiagramLine } from '../components/marble-diagram';
 import { Button } from '../components/button';
-import { BehaviorSubject, interval, filter, tap, EMPTY, switchMap, map, combineLatest } from 'rxjs';
+import { BehaviorSubject, interval, filter, tap, EMPTY, switchMap, map } from 'rxjs';
 import { Note } from 'tonal';
 import * as Tone from 'tone';
 
@@ -143,28 +143,30 @@ export const BigFinal: FunctionComponent = () => {
 
             <MarbleDiagram>
                 <DiagramLine label={`tick$`} observable={tick$} />
-
+                {/*
                 <DiagramOperator>
                     Drums: bassDrum$ (tick % 4 === 0), hiHat$ (all), snare$ (tick % 4 === 2)
                 </DiagramOperator>
 
+*/}
                 <DiagramLine label={`bassDrum$`} observable={bassDrum$} />
                 <DiagramLine label={`hiHat$`} observable={hiHat$} />
                 <DiagramLine label={`snare$`} observable={snare$} />
-
+                {/*
                 <DiagramOperator>
                     .map(tick =&gt; bassNotes[Math.floor(tick / 4) % 4])
                 </DiagramOperator>
 
+*/}
                 <DiagramLine
                     label={`bassLine$`}
                     observable={bassLine$.pipe(map((value) => value.noteName))}
                 />
-
+                {/*
                 <DiagramOperator>
                     .map(tick =&gt; chords[Math.floor(tick / 4) % 4])
                 </DiagramOperator>
-
+*/}
                 <DiagramLine label={`chord$`} observable={chord$} />
             </MarbleDiagram>
         </div>
