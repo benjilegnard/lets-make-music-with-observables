@@ -5,6 +5,7 @@ import { Button } from '../components/button';
 import { BehaviorSubject, interval, filter, tap, EMPTY, switchMap, map } from 'rxjs';
 import { Note } from 'tonal';
 import * as Tone from 'tone';
+import { drumSamples } from '../utils';
 
 // Audio contexts and instruments
 let synth: Tone.PolySynth | null = null;
@@ -72,17 +73,17 @@ const tick$ = isPlaying$.pipe(
 // Drum tracks
 const bassDrum$ = tick$.pipe(
     filter((tick) => tick % 4 === 0),
-    tap(() => playSound('/sounds/TR-808/BD0000.WAV'))
+    tap(() => playSound(drumSamples.bassDrum))
 );
 
 const hiHat$ = tick$.pipe(
     filter(() => true),
-    tap(() => playSound('/sounds/TR-808/CH.WAV'))
+    tap(() => playSound(drumSamples.hiHat))
 );
 
 const snare$ = tick$.pipe(
     filter((tick) => tick % 4 === 2),
-    tap(() => playSound('/sounds/TR-808/SD0000.WAV'))
+    tap(() => playSound(drumSamples.snare))
 );
 
 // Bass line

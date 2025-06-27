@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 import { MarbleDiagram, DiagramLine, DiagramOperator } from '../components/marble-diagram';
 import { Button } from '../components/button';
 import { BehaviorSubject, interval, filter, tap, EMPTY, switchMap } from 'rxjs';
+import { drumSamples } from '../utils';
 
 const playSound = (url: string) => {
     const audio = new Audio(url);
@@ -17,17 +18,17 @@ const tick$ = isPlaying$.pipe(
 
 const bassDrum$ = tick$.pipe(
     filter((tick) => tick % 4 === 0),
-    tap(() => playSound('/sounds/TR-808/BD0000.WAV'))
+    tap(() => playSound(drumSamples.bassDrum))
 );
 
 const hiHat$ = tick$.pipe(
     filter(() => true),
-    tap(() => playSound('/sounds/TR-808/CH.WAV'))
+    tap(() => playSound(drumSamples.hiHat))
 );
 
 const snare$ = tick$.pipe(
     filter((tick) => tick % 4 === 2),
-    tap(() => playSound('/sounds/TR-808/SD0000.WAV'))
+    tap(() => playSound(drumSamples.snare))
 );
 
 // Subscribe to all drum tracks
