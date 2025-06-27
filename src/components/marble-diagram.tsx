@@ -8,13 +8,11 @@ import { flavors } from '@catppuccin/palette';
 const mocha = flavors.mocha.colors;
 
 // SVG styling constants using Catppuccin colors
-const MARBLE_STROKE = mocha.surface2.hex;
-const MARBLE_STROKE_WIDTH = '2';
+const MARBLE_STROKE_WIDTH = '3';
 const LINE_STROKE = mocha.overlay0.hex;
 const LINE_STROKE_WIDTH = '2';
 const TEXT_FILL = mocha.text.hex;
 const TEXT_FONT_SIZE = '12';
-const MARBLE_TEXT_FILL = mocha.crust.hex;
 const MARBLE_TEXT_FONT_SIZE = '10';
 
 // Layout constants
@@ -173,8 +171,8 @@ export const DiagramLine: FunctionComponent<DiagramLineProps> = ({
                     cx={marble.x}
                     cy={y}
                     r={MARBLE_RADIUS}
-                    fill={marble.color}
-                    stroke={MARBLE_STROKE}
+                    fill={mocha.crust.hex}
+                    stroke={marble.color}
                     strokeWidth={MARBLE_STROKE_WIDTH}
                 />
                 <text
@@ -182,7 +180,7 @@ export const DiagramLine: FunctionComponent<DiagramLineProps> = ({
                     y={y + 10}
                     textAnchor="middle"
                     dominantBaseline="middle"
-                    fill={MARBLE_TEXT_FILL}
+                    fill={marble.color}
                     fontSize={MARBLE_TEXT_FONT_SIZE}
                     fontFamily="monospace"
                     fontWeight="bold"
@@ -251,7 +249,7 @@ export const DiagramLine: FunctionComponent<DiagramLineProps> = ({
                 {/* Observable label */}
                 <text
                     x={10}
-                    y={y - 20}
+                    y={30}
                     fill={TEXT_FILL}
                     fontSize={TEXT_FONT_SIZE}
                     fontFamily="sans-serif"
@@ -290,10 +288,9 @@ export const DiagramOperator: FunctionComponent<DiagramOperatorProps> = ({
                 backgroundColor: mocha.surface0.hex,
                 border: `1px solid ${mocha.surface1.hex}`,
                 borderRadius: '8px',
-                fontSize: '16px',
-                fontWeight: 'bold',
+                fontSize: '24px',
                 color: mocha.text.hex,
-                fontFamily: 'sans-serif',
+                fontFamily: 'Hack, monospace',
                 position: 'relative',
             }}
         >

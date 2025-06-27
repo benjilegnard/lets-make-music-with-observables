@@ -2,13 +2,7 @@
 <div id="sound-test"></div>
 
 
-<div id="storybook"></div>
-
-
-<div id="marble-demo"></div>
-
-
-# Faisons de la musique réactive avec ~~RxJS~~, des Observables et l’API WebAudio 🎧 🎼 🔊 🎛️
+# Faisons de la musique réactive avec RxJS et l’API WebAudio🎧🎼🔊🎛️
 
 
 
@@ -41,9 +35,10 @@ Notes:
 
 
 ### 🤔 C'est quoi un Observable ?
-- Pattern de gestion réactive d'un changement de valeur<!-- .element class="fragment"-->
+- Pattern de gestion réactive des changement de valeur<!-- .element class="fragment"-->
 - "Push", 📢 Producteur -> 👂Consommateur<!-- .element class="fragment"-->
 - "Value change as Events"<!-- .element class="fragment"-->
+- Streams / Flux<!-- .element class="fragment"-->
 
 Notes:
 - Ce n'est pas nouveau,
@@ -83,18 +78,41 @@ Notes:
 - Il y'a d'autres librairies (zen-observable, fate-observable, core-js) mais RxJS est king, because angular
 
 
-### En JavaScript/TypeScript
-| Observer | Observable | Subscription |
-|-|-|-|
-| next() | constructor() | unsubscribe() |
-| error() | of() | closed |
-| complete() | from() | |
+### API Observable
+- Observer
+- Observable
+- Subscription
 
 Notes:
-- de l'api de base, vous avez trois objets principaux à connaître
-- le principal est au milieu
+- de l'api de base en JS, vous avez trois objets principaux à connaître
+
+
+| Observer |
+|-|
+| next(t: T) |
+| error() |
+| complete() |
+
+Notes:
+- c'est juste une fonction next() qui va recevoir notre  valeur t qui change
+
+
+| Observable&lt;T&gt; |
+|-|
+| constructor() |
+| of() |
+| from() |
+| subscribe((t: T) => void): Subscription |
+Notes:
 - Observable, qui encapsule une donnée au fil du temps
 - Subscriber: va avoir la logique de : qu'est ce que je fais quand une donnée
+
+
+| Subscription |
+|-|
+| unsubscribe() |
+| closed |
+| |
 
 
 ### Une fonction vs un callback simple.
@@ -105,7 +123,7 @@ interface Observable<T> {
     subscribe(
         next: (t: T) => void,
         error?: () => void,
-        complete: () => void): Subscription;
+        complete?: () => void): Subscription;
 
     subscribe({
         next: (t: T) => void,
@@ -120,7 +138,7 @@ interface Observable<T> {
 
 ### Usage
 
-```typescript
+```typescript[|1-3|5-7|9]
 const obs$ = new Observable((obs)=>{
     obs.next(42);
 });
@@ -143,11 +161,13 @@ Notes:
 
 ### Méthodes statiques
 
-```TypeScript[|1-3|4-6|7-9]
+```TypeScript[|1-3|4-8|9-11]
 const abs$ = Observable.of(["a", "b", "c", "d");
 abc$.subscribe(console.log);
 // "a", "b", "c", "d"
-const obs1 = Observable.from(new Observable((obs)=>{obs.next(42)}));
+const obs1 = Observable.from(
+   new Observable((obs)=>{obs.next(42)})
+);
 obs2.subscribe(consolelog);
 // 42
 const obs3$ = Observable.from(Promise.resolve(42));
@@ -192,8 +212,9 @@ Notes:
 - Observable natif disponibles dans la console.
 - avant ça ils étaient derrière un flag expérimental à activer
 
+
 ### Effectivement...
-<img src="images/chrome-console.png" />
+<img src="images/chrome-console.png" style="max-height: 56vh"/>
 
 
 ### J'ai menti 🤥
@@ -205,7 +226,10 @@ Notes:
 
 
 ### TC39 proposal
-<img src="images/TC39.png" style="max-height: 20vh"/>
+<div class="columns">
+<img src="images/TC39.png" style="width: 250px; height: 250px"/>
+<img src="images/qrcode-tc39-observables.png" style="width: 250px; height: 250px"/>
+</div>
 
 <https://github.com/tc39/proposal-observable>
 
@@ -213,9 +237,10 @@ Notes:
 - comité qui valide les évolutions du language.
 - Stage 1 encore
 - Stages à expliquer si on à le temps
+- Et donc le vrai titre de ce talk
 
 
-### Observable natifs
+# Faisons de la musique réactive avec des Observables natifs et l’API WebAudio🎧🎼🔊🎛️
 
 Notes:
 - le concept de base est le même
@@ -308,8 +333,11 @@ getElementById("bpm-slider")
 
 ### écouter n'importe quel événement parce que:
 
-```typescript
+```typescript[1,2,3,4,6|1,5,6]
 interface EventTarget {
+  addEventListener(/*  */);
+  removeEventListener(/* */);
+  dispatchEvent(/* */);
   when(eventName: string): Observable<Event>;
 }
 ```
@@ -336,12 +364,14 @@ Notes:
 - ici je recréé un métronome chaque fois que la valeur en bpm change.
 
 
-### WebAudio: charger un son.
+### WebAudio: je charge un son.
 ```TypeScript
 const audioContext = new AudioContext();
 const response = await fetch('sounds/metronome.mp3');
 const arrayBuffer = await response.arrayBuffer();
-const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+const audioBuffer = await audioContext.decodeAudioData(
+    arrayBuffer
+);
 ```
 
 Notes:
@@ -350,7 +380,7 @@ Notes:
 - quelque part lors de l'initialisation de mon écran.
 
 
-### WebAudio: jouer le son
+### WebAudio: je joue le son
 ```TypeScript
 metronome$.subscribe(() => {
     const source = audioContext.createBufferSource();
@@ -361,7 +391,17 @@ metronome$.subscribe(() => {
 ```
 
 
+### WebAudio: je coupe le son
+```TypeScript
+source.stop();
+```
+
+<img src="images/louxor-jadore.jpeg"/>
+
+
 ### WebAudio API
+<img src="images/audio-routing-graph.svg"/>
+
 - WebAudio : source / destination
 - Connect / Disconnect
 
@@ -421,6 +461,11 @@ Notes:
 <div id="drum-beat"></div>
 
 
+### Pourquoi filter() ?
+
+<img src="images/chrome-console.png" style="max-height: 56vh"/>
+
+
 ### Autre Opérateurs 
 - `first()`
 - `last()`
@@ -428,22 +473,23 @@ Notes:
 - etc...
 
 Notes:
-- pourquoi filter ?
+- pourquoi filter ? j'aurais pu faire avec d'autres.
 - nécéssite que l'observable se complète/termine d'émettre
 - et surtout : ça renvoie des promesses.
 
 
-### différences d'api
+### Différences d'api
 - ⚠️ Certaines méthodes renvoient des promesses 🚨
 
 
 ### renvoient un Observable
-  - `from()`
-  - `to()`
-  - `map()`
-  - `filter()`
-  - `switchMap()`
-  - `inspect()`
+- `from()`
+- `to()`
+- `map()`
+- `filter()`
+- `switchMap()`
+- `inspect()`
+- ...
 
 
 ### renvoient une Promesse
@@ -451,13 +497,16 @@ Notes:
 - `first()`
 - `last()`
 - `every()`
+- `some()`
 - `toArray()`
+- `forEach()`
 - `drop()`
 - `flatMap()`
 - `reduce()`
+- ...
 
 
-### Pourquoi ?
+### Mais pourquoi ?!
 <img src="images/but-why.gif" />
 Notes:
 - conception par comité.
@@ -465,9 +514,13 @@ Notes:
 
 
 ### TC 39
-<img src="images/TC-39.png" />
+<div class="columns">
+    <img src="images/TC39.png" style="width: 250px; height: 250px"/>
+    <img src="images/qrcode-tc39-async-helpers.png" style="width: 250px; height: 250px"/>
+</div>
 
 <https://github.com/tc39/proposal-async-iterator-helpers>
+
 Notes:
 - les méthodes sur un Observable natif viennent en fait d'une autre proposal au tc-39,
 - les utilitaires d'itérateurs asynchrone.
@@ -495,7 +548,6 @@ Notes:
 - son, onde, maths everything is a function
 
 
-
 ### Theremin
 
 <div id="theremin"></div>
@@ -508,20 +560,20 @@ Notes:
 
 ### Fréquence / Maths
 
-<img src="piano-keys-octave-division.svg"/>
+<img src="images/piano-keys-octave.svg"/>
 
 
 ### Fréquence / Maths
 
-<img src="piano-keys-octave.svg"/>
+<img src="images/piano-keys-octave-division.svg"/>
 
 
 ### Fréquence / Maths
 
-<img src="piano-keys-octave.svg"/>
+<img src="images/piano-keys-semitones.svg"/>
 
 
-### wikipedia ?
+### Hard-code fequencies ?
 
 <img src="images/wikipedia-piano-key-frequencies.png"/>
 
@@ -531,80 +583,113 @@ Notes:
 - mais en fait y'a mieux...
 
 
-### tonal
+### Encore mieux: tonal
 ```bash
 npm install tonal
 ```
 
 <https://github.com/tonaljs/tonal>
 
+<img src="images/qrcode-tonaljs.png" style="width: 250px; height: 250px"/>
 Notes:
 - on ne va pas réinventer la roue.
 - tonal c'est quoi comme librairie ?
 
 
-### Théorie musicale:
+### Théorie musicale
+<img src="images/circle-of-fifths.png" style="width: 512px;"/>
+
+Notes:
+- ca va vous permettre de faire différents accord, différentes gammes
+- règles mathématiques
 
 
 ### Examples
-```TypeScript
+```TypeScript[|3-8|4|10-12|14|16-20]
+import { Chord, Interval, Note, Scale } from "tonal";
 
+Note.midi("C4"); // => 60
+Note.freq("a4"); // => 440
+Note.accidentals("c#2"); // => '#'
+Note.transpose("C4", "5P"); // => "G4"
+Interval.semitones("5P"); // => 7
+Interval.distance("C4", "G4"); // => "5P"
+
+// Scales
+Scale.get("C major").notes; // => ["C", "D", "E", "F", "G", "A", "B"];
+[1, 3, 5, 7].map(Scale.degrees("C major")); // => ["C", "E", "G", "B"]
+
+Chord.get("Cmaj7").name; // => "C major seventh"
+
+// Chord inversions
+const triad = Chord.degrees("Cm");
+[1, 2, 3].map(triad); // => ["C", "Eb", "G"];
+[2, 3, 1].map(triad); // => ["Eb", "G", "C"];
+[3, 1, 2].map(triad); // => ["G", "C", "Eb"];
 ```
+Notes:
+- permets de manipuler des notes, accords et gamme à un haut niveau
+- très complet, major septième etc.. 
+
 
 ### Démo
-
-à chaque changement de beat: changement de note
+<div id="bass-line"></div>
 
 
 
 ## 🎹 Synthétiseur / Accords
 
 
-### ms-20 tease
+### Tone.js
+```bash
+npm install tone
+```
+<https://tonejs.github.io/>
+
+<div class="columns">
+    <img src="images/tonejs.png" style="width: 250px; height: 250px"/>
+<img src="images/qrcode-tone.png" style="width: 250px; height: 250px"/>
+    </div>
 
 
-### reprendre l'émission initiale, simplifier
+### Abstraction
+- Instruments
+- Samples
+- Effects
+- Sequencers
+
+Notes:
+- mieux qu'un oscillator de base
 
 
-### Enveloppe generator
+### WebAudio +++
+
+```TypeScript
+const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+const now = Tone.now();
+synth.triggerAttack("D4", now);
+synth.triggerAttack("F4", now + 0.5);
+synth.triggerAttack("A4", now + 1);
+synth.triggerAttack("C5", now + 1.5);
+synth.triggerAttack("E5", now + 2);
+synth.triggerRelease(["D4", "F4", "A4", "C5", "E5"], now + 4);
+```
 
 
-### nappes
-
-
-### accords 
-
-
-### théorie musicale
-https://www.npmjs.com/package/Tonal
-
-
-### démo
-
-Contretemps
-
-
-## Arpèges aléatoires
-
-
-### Un peu de randomisation, gammes, tonal
-
-
-### connecter tout ça, il nous manque des pièces
-
-
-### Math.random()
+### Démo accords.
+<div id="chord-progression"></div>
 
 
 
 ## Grand final
 
-
-### Deux minutes max de démo
+<div id="big-final"></div>
 
 
 
 ## Conclusion
+Notes:
+- évidemment tout ça n'était qu'un prétexte
 
 
 ### Ce qu'on a vu des Observables natifs
@@ -627,7 +712,7 @@ Notes:
 
 ### RxJS ?
 
-<img src="images/rx-logo.png" />
+<img src="images/rx-logo.png" style="width: 250px; height:250px;"/>
 
 Notes:
 - toujours pertinent, 
@@ -669,3 +754,9 @@ Notes:
     </a>
   </div>
 </div>
+
+
+<div id="storybook"></div>
+
+
+<div id="marble-demo"></div>

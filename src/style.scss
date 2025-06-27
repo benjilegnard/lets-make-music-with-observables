@@ -49,7 +49,7 @@ $mainFontSize: 32px;
 $mainFont: "'Source Sans Pro', Arial, sans-serif";
 $headingFont: "'Poppins', Helvetica, sans-serif";
 $codeFont: Hack, monospace;
-$codeFontSize: 28px;
+$codeFontSize: 26px;
 $headingTextShadow: none;
 $headingMargin: 0 0 10px 0;
 $headingLetterSpacing: normal;
@@ -89,6 +89,12 @@ code.hljs {
     float: right;
     border-radius: 50%;
     width: 200px;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 // last slide

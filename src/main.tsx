@@ -16,6 +16,9 @@ import { BpmToInterval, BpmToIntervalWithTick } from './slides/bpm-to-interval';
 import { BpmToTimeSignature } from './slides/bpm-to-time-signature';
 import { DrumBeat } from './slides/drum-beat';
 import { Theremin } from './slides/theremin';
+import { BassLine } from './slides/bass-line';
+import { ChordProgression } from './slides/chord-progression';
+import { BigFinal } from './slides/big-final';
 
 let deck = new Reveal({
     plugins: [Markdown, Notes, Highlight, RevealMath.KaTeX],
@@ -30,7 +33,10 @@ const components: Record<string, ComponentChild> = {
     'bpm-to-interval-with-tick': <BpmToIntervalWithTick />,
     'bpm-to-time-signature': <BpmToTimeSignature />,
     'drum-beat': <DrumBeat />,
-    'theremin': <Theremin />
+    'theremin': <Theremin />,
+    'bass-line': <BassLine />,
+    'chord-progression': <ChordProgression />,
+    'big-final': <BigFinal />,
 };
 
 deck.initialize({
